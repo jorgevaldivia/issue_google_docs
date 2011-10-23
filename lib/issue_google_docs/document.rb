@@ -47,7 +47,12 @@ module IssueGoogleDocs
             type = attributes[0].text.to_s.gsub(':', '') # Get type and remove colon
             description = attributes[1].text
             points = attributes[2].text
-            hours = attributes[3].text
+
+            if(attributes.length > 3)
+              hours = attributes[3].text
+            else
+              hours = 'N/A'
+            end
             
             issue = IssueGoogleDocs::Issue.new(type, description, points, hours)
 
